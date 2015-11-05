@@ -3664,6 +3664,12 @@ public final class Settings {
         public static final String NAVIGATION_BAR_SHOW = "navigation_bar_show";
 
         /**
+         * Whether volume button press shuld be treated as wake key
+         * @hide
+         */
+        public static final String VOLUME_BUTTON_WAKE = "volume_button_wake";
+
+        /**
          * Change volume up and down handlign based on rotation
          * @hide
          */
