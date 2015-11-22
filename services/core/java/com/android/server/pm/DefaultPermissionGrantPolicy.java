@@ -763,7 +763,7 @@ final class DefaultPermissionGrantPolicy {
                 grantRuntimePermissionsLPw(gmscorePackagePersistent, STORAGE_PERMISSIONS, userId);
             }
 
-			// Google Connectivity Services
+            // Google Connectivity Services
             PackageParser.Package gcsPackage = getSystemPackageLPr(
                     "com.google.android.apps.gcs");
             if (gcsPackage != null && doesPackageSupportRuntimePermissions(gcsPackage)) {
@@ -771,29 +771,29 @@ final class DefaultPermissionGrantPolicy {
                 grantRuntimePermissionsLPw(gcsPackage, LOCATION_PERMISSIONS, userId);
             }
 
-			// Google Contacts Sync
+            // Google Contacts Sync
             PackageParser.Package googlecontactssyncPackage = getSystemPackageLPr(
                     "com.google.android.syncadapters.contacts");
             if (googlecontactssyncPackage != null && doesPackageSupportRuntimePermissions(googlecontactssyncPackage)) {
                 grantRuntimePermissionsLPw(googlecontactssyncPackage, CONTACTS_PERMISSIONS, userId);
-            }			
+            }
 
-			// Google Backup Transport
+            // Google Backup Transport
             PackageParser.Package googlebackuptransportPackage = getSystemPackageLPr(
                     "com.google.android.backuptransport");
             if (googlebackuptransportPackage != null && doesPackageSupportRuntimePermissions(googlebackuptransportPackage)) {
                 grantRuntimePermissionsLPw(googlebackuptransportPackage, CONTACTS_PERMISSIONS, userId);
-            }			
-			
-			// Google Play Framework
+            }
+
+            // Google Play Framework
             PackageParser.Package gsfcorePackage = getSystemPackageLPr(
                     "com.google.android.gsf");
             if (gsfcorePackage != null && doesPackageSupportRuntimePermissions(gsfcorePackage)) {
                 grantRuntimePermissionsLPw(gsfcorePackage, CONTACTS_PERMISSIONS, userId);
                 grantRuntimePermissionsLPw(gsfcorePackage, PHONE_PERMISSIONS, userId);
-            }		
+            }
 
-			// Google Setup Wizard
+            // Google Setup Wizard
             PackageParser.Package setupwizardPackage = getSystemPackageLPr(
                     "com.google.android.setupwizard");
             if (setupwizardPackage != null && doesPackageSupportRuntimePermissions(setupwizardPackage)) {
@@ -801,9 +801,9 @@ final class DefaultPermissionGrantPolicy {
                 grantRuntimePermissionsLPw(setupwizardPackage, PHONE_PERMISSIONS, userId);
                 grantRuntimePermissionsLPw(setupwizardPackage, LOCATION_PERMISSIONS, userId);
                 grantRuntimePermissionsLPw(setupwizardPackage, CAMERA_PERMISSIONS, userId);
-            }	
+            }
 
-			// Google Play Store
+            // Google Play Store
             PackageParser.Package vendingPackage = getSystemPackageLPr(
                     "com.android.vending");
             if (vendingPackage != null && doesPackageSupportRuntimePermissions(vendingPackage)) {
@@ -812,7 +812,18 @@ final class DefaultPermissionGrantPolicy {
                 grantRuntimePermissionsLPw(vendingPackage, LOCATION_PERMISSIONS, userId);
                 grantRuntimePermissionsLPw(vendingPackage, SMS_PERMISSIONS, userId);
                 grantRuntimePermissionsLPw(vendingPackage, STORAGE_PERMISSIONS, userId);
-            }	
+            }
+
+            // Project Fi
+            PackageParser.Package fiPackage = getDefaultProviderAuthorityPackageLPr(
+                    "com.google.android.apps.tycho", userId);
+            if (fiPackage != null) {
+                grantRuntimePermissionsLPw(fiPackage, CONTACTS_PERMISSIONS, true, userId);
+                grantRuntimePermissionsLPw(fiPackage, PHONE_PERMISSIONS, true, userId);
+                grantRuntimePermissionsLPw(fiPackage, MICROPHONE_PERMISSIONS, true, userId);
+                grantRuntimePermissionsLPw(fiPackage, LOCATION_PERMISSIONS, true, userId);
+                grantRuntimePermissionsLPw(fiPackage, SMS_PERMISSIONS, true, userId);
+            }
         }
     }
 
