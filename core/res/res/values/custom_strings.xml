@@ -14,15 +14,10 @@
      limitations under the License.
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-  <!--OmniGears Battery lights -->
-  <java-symbol type="bool" name="config_multiColorBatteryLed" />
-  <java-symbol type="bool" name="config_intrusiveBatteryLed" />
-
-  <!-- Notification light -->
-  <java-symbol type="bool" name="config_intrusiveNotificationLed" />
-  <java-symbol type="bool" name="config_multiColorNotificationLed" />
-  <java-symbol type="array" name="notification_light_package_mapping" />
-  <java-symbol type="array" name="config_notificationNoAlertsVibePattern" />
-  <!-- LED pulse -->
-  <java-symbol type="bool" name="config_ledCanPulse" />
+    <!-- Battery Styles -->
+    <string name="battery_style_text">Text only</string>
+    <string name="battery_style_default">Default</string>
+    <string name="battery_style_meter_horizontal">Horizontal bar</string>
+    <string name="battery_style_circle">Circle</string>
+    <string name="battery_style_droid">Droid</string>
 </resources>
