@@ -101,17 +101,6 @@ public class PhoneStatusBarPolicy implements Callback, RotationLockController.Ro
 
     private BluetoothController mBluetooth;
 
-
-    private BroadcastReceiver mIntentReceiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            String action = intent.getAction();
-            if (action.equals(BluetoothHeadset.ACTION_VENDOR_SPECIFIC_HEADSET_EVENT)) {
-                updateBluetoothBattery(intent);
-            }
-        }
-    };
-
     public PhoneStatusBarPolicy(Context context, StatusBarIconController iconController,
             CastController cast, HotspotController hotspot, UserInfoController userInfoController,
             BluetoothController bluetooth, RotationLockController rotationLockController,
@@ -593,6 +582,8 @@ public class PhoneStatusBarPolicy implements Callback, RotationLockController.Ro
                 updateManagedProfile();
             } else if (action.equals(AudioManager.ACTION_HEADSET_PLUG)) {
                 updateHeadsetPlug(intent);
+            } else if (action.equals(BluetoothHeadset.ACTION_VENDOR_SPECIFIC_HEADSET_EVENT)) {
+                updateBluetoothBattery(intent);
             }
         }
     };
