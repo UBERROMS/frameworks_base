@@ -39,4 +39,13 @@
     <!-- QS date usage text color -->
 	<color name="data_usage_primary">#ff80cbc4</color>
 
+    <!-- QS alarm status text color -->
+    <color name="qs_alarm_status_text_color">#64ffffff</color>
+
+    <!-- QS edit page toolbar text color -->
+    <color name="qs_edit_toolbar_text_color">#FFFFFF</color>
+
+    <!-- QS edit button text color -->
+    <color name="qs_edit_button_text_color">#64FFFFFF</color>
+
 </resources>
