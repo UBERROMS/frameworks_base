@@ -33,7 +33,7 @@ public class QSIconView extends ViewGroup {
     protected final View mIcon;
     protected final int mIconSizePx;
     protected final int mTilePaddingBelowIconPx;
-    private boolean mAnimationEnabled = true;
+    private boolean mAnimationEnabled = false;
 
     public QSIconView(Context context) {
         super(context);
