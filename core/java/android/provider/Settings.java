@@ -7352,7 +7352,7 @@ public final class Settings {
         * @hide
         */
        @SystemApi
-       public static final int OTA_DISABLE_AUTOMATIC_UPDATE = 1;
+       public static final String OTA_DISABLE_AUTOMATIC_UPDATE = String.valueOf(1);
 
        /**
         * Whether the package manager should send package verification broadcasts for verifiers to
