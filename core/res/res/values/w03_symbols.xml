@@ -3,9 +3,8 @@
 willl03
 -->
 <resources>
-
     <!-- label for item that screenshots in phone options dialog -->
     <java-symbol type="string" name="global_action_screenshot" />
-    <java-symbol type="drawable" name="ic_lock_screenshot" />
 
+    <java-symbol type="drawable" name="ic_lock_screenshot" />
 </resources>
