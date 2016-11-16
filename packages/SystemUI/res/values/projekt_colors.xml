@@ -21,23 +21,23 @@
     <color name="navbutton_ripple_color">#FFFFFFFF</color>
 
     <!-- QS edit page background color -->
-    <color name="qs_edit_item_decoration_bg">#ff384248</color>
+    <color name="qs_edit_item_decoration_bg">@*android:color/notification_material_background_color</color>
 
     <!-- Nav bar tuner colors -->
-    <color name="navbar_tuner_background_color">@android:color/white</color>
-    <color name="navbar_tuner_text_color">@*android:color/material_deep_teal_500</color>
+    <color name="navbar_tuner_background_color">@*android:color/notification_material_background_color</color>
+    <color name="navbar_tuner_text_color">@*android:color/material_pixel_blue_bright</color>
 	
 	<!-- QS battery % text color -->
-    <color name="qs_battery_text_color">#ff80cbc4</color>
+    <color name="qs_battery_text_color">#FFFFFFFF</color>
 	
 	<!-- QS battery graph text color -->
-    <color name="qs_battery_graph_text_color">#66FFFFFF</color>
+    <color name="qs_battery_graph_text_color">@*android:color/material_pixel_blue_bright</color>
 
 	<!-- QS battery accent color -->
-    <color name="qs_battery_accent">#ff80cbc4</color>
+    <color name="qs_battery_accent">@*android:color/material_pixel_blue_light</color>
 	
     <!-- QS date usage text color -->
-	<color name="data_usage_primary">#ff80cbc4</color>
+	<color name="data_usage_primary">@*android:color/material_pixel_blue_light</color>
 
     <!-- QS alarm status text color -->
     <color name="qs_alarm_status_text_color">#64ffffff</color>

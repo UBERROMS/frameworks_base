@@ -16,7 +16,7 @@
 
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:state_activated="true">
-        <color android:color="?attr/colorControlActivated" />
+        <color android:color="@*android:color/notification_material_background_color" />
     </item>
     <item>
         <color android:color="@color/transparent" />

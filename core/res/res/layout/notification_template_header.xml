@@ -91,7 +91,7 @@
         />
     <com.android.internal.widget.NotificationExpandButton
         android:id="@+id/expand_button"
-        android:background="@null"
+        android:background="#4dffffff"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingTop="1dp"

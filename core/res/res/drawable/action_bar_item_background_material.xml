@@ -15,5 +15,5 @@
 -->
 
 <ripple xmlns:android="http://schemas.android.com/apk/res/android"
-        android:color="?attr/colorControlHighlight"
+        android:color="@*android:color/notification_material_background_color"
         android:radius="20dp" />

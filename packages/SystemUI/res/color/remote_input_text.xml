@@ -17,5 +17,5 @@
 
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:state_enabled="true" android:color="@color/remote_input_text_enabled" /> <!-- white -->
-    <item android:color="#99ffffff" /> <!-- 60% white -->
+    <item android:color="@*android:color/notification_material_background_color" /> <!-- 60% white -->
 </selector>

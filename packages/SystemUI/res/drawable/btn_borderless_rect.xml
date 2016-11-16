@@ -19,8 +19,7 @@
     <item android:id="@android:id/mask">
         <shape>
             <corners android:radius="@dimen/borderless_button_radius" />
-
-            <solid android:color="@android:color/white" />
+            <solid android:color="@*android:color/notification_material_background_color" />
         </shape>
     </item>
 
