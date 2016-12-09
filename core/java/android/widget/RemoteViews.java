@@ -105,7 +105,7 @@ public class RemoteViews implements Parcelable, Filter {
      * An array of actions to perform on the view tree once it has been
      * inflated
      */
-    private ArrayList<Action> mActions;
+    private final ArrayList<Action> mActions = new ArrayList<Action>();
 
     /**
      * A class to keep track of memory usage by this RemoteViews
@@ -359,9 +359,6 @@ public class RemoteViews implements Parcelable, Filter {
         RemoteViews copy = newRv.clone();
 
         HashMap<String, Action> map = new HashMap<String, Action>();
-        if (mActions == null) {
-            mActions = new ArrayList<Action>();
-        }
 
         int count = mActions.size();
         for (int i = 0; i < count; i++) {
@@ -2170,7 +2167,6 @@ public class RemoteViews implements Parcelable, Filter {
 
             int count = parcel.readInt();
             if (count > 0) {
-                mActions = new ArrayList<Action>(count);
                 for (int i=0; i<count; i++) {
                     int tag = parcel.readInt();
                     switch (tag) {
@@ -2298,11 +2294,9 @@ public class RemoteViews implements Parcelable, Filter {
 
         if (!hasLandscapeAndPortraitLayouts()) {
             // Accumulate the memory usage for each action
-            if (mActions != null) {
-                final int count = mActions.size();
-                for (int i= 0; i < count; ++i) {
-                    mActions.get(i).updateMemoryUsageEstimate(mMemoryUsageCounter);
-                }
+            final int count = mActions.size();
+            for (int i= 0; i < count; ++i) {
+                mActions.get(i).updateMemoryUsageEstimate(mMemoryUsageCounter);
             }
             if (mIsRoot) {
                 mBitmapCache.addBitmapMemory(mMemoryUsageCounter);
@@ -2320,11 +2314,9 @@ public class RemoteViews implements Parcelable, Filter {
     private void setBitmapCache(BitmapCache bitmapCache) {
         mBitmapCache = bitmapCache;
         if (!hasLandscapeAndPortraitLayouts()) {
-            if (mActions != null) {
-                final int count = mActions.size();
-                for (int i= 0; i < count; ++i) {
-                    mActions.get(i).setBitmapCache(bitmapCache);
-                }
+            final int count = mActions.size();
+            for (int i= 0; i < count; ++i) {
+                mActions.get(i).setBitmapCache(bitmapCache);
             }
         } else {
             mLandscape.setBitmapCache(bitmapCache);
@@ -2350,9 +2342,6 @@ public class RemoteViews implements Parcelable, Filter {
             throw new RuntimeException("RemoteViews specifying separate landscape and portrait" +
                     " layouts cannot be modified. Instead, fully configure the landscape and" +
                     " portrait layouts individually before constructing the combined layout.");
-        }
-        if (mActions == null) {
-            mActions = new ArrayList<Action>();
         }
         mActions.add(a);
 
@@ -3417,13 +3406,11 @@ public class RemoteViews implements Parcelable, Filter {
     }
 
     private void performApply(View v, ViewGroup parent, OnClickHandler handler) {
-        if (mActions != null) {
-            handler = handler == null ? DEFAULT_ON_CLICK_HANDLER : handler;
-            final int count = mActions.size();
-            for (int i = 0; i < count; i++) {
-                Action a = mActions.get(i);
-                a.apply(v, parent, handler);
-            }
+        handler = handler == null ? DEFAULT_ON_CLICK_HANDLER : handler;
+        final int count = mActions.size();
+        for (int i = 0; i < count; i++) {
+            Action a = mActions.get(i);
+            a.apply(v, parent, handler);
         }
     }
 
@@ -3450,7 +3437,7 @@ public class RemoteViews implements Parcelable, Filter {
      * @hide
      */
     public int getSequenceNumber() {
-        return (mActions == null) ? 0 : mActions.size();
+        return mActions.size();
     }
 
     /* (non-Javadoc)
@@ -3477,12 +3464,7 @@ public class RemoteViews implements Parcelable, Filter {
             dest.writeParcelable(mApplication, flags);
             dest.writeInt(mLayoutId);
             dest.writeInt(mIsWidgetCollectionChild ? 1 : 0);
-            int count;
-            if (mActions != null) {
-                count = mActions.size();
-            } else {
-                count = 0;
-            }
+            int count = mActions.size();
             dest.writeInt(count);
             for (int i=0; i<count; i++) {
                 Action a = mActions.get(i);
