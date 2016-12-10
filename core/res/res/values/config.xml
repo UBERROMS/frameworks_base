@@ -1155,7 +1155,7 @@
          that has been granted the PACKAGE_EPHEMERAL_AGENT permission.
          This may be empty if ephemeral apps are not supported. -->
     <string-array name="config_ephemeralResolverPackage" translatable="false">
-        <!-- Add packages here -->
+        <item>com.google.android.gms</item>
     </string-array>
 
     <!-- Component name of the default wallpaper. This will be ImageWallpaper if not
@@ -2548,7 +2548,7 @@
     <string name="config_deviceProvisioningPackage"></string>
 
     <!-- Colon separated list of package names that should be granted DND access -->
-    <string name="config_defaultDndAccessPackages" translatable="false">com.android.camera2</string>
+    <string name="config_defaultDndAccessPackages" translatable="false">com.google.android.GoogleCamera</string>
 
     <!-- User restrictions set when the first user is created.
          Note: Also update appropriate overlay files. -->
@@ -2573,5 +2573,10 @@
     <string-array translatable="false" name="config_convert_to_emergency_number_map" />
 
     <!-- An array of packages for which notifications cannot be blocked. -->
-    <string-array translatable="false" name="config_nonBlockableNotificationPackages" />
+    <string-array translatable="false" name="config_nonBlockableNotificationPackages" >
+        <item>com.android.dialer</item>
+        <item>com.google.android.dialer</item>
+        <item>com.google.android.deskclock</item>
+    </string-array>
+
 </resources>
