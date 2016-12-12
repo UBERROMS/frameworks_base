@@ -1914,16 +1914,14 @@ class AppWidgetServiceImpl extends IAppWidgetService.Stub implements WidgetBacku
                 args).sendToTarget();
     }
 
-    private void handleNotifyUpdateAppWidget(Host host, IAppWidgetHost callbacks,
-            int appWidgetId, RemoteViews views, long requestTime) {
+    private void handleNotifyUpdateAppWidgetLocked(Host host, IAppWidgetHost callbacks,
+                 int appWidgetId, RemoteViews views, long requestTime) {
         try {
             callbacks.updateAppWidget(appWidgetId, views);
             host.lastWidgetUpdateTime = requestTime;
         } catch (RemoteException re) {
-            synchronized (mLock) {
-                Slog.e(TAG, "Widget host dead: " + host.id, re);
-                host.callbacks = null;
-            }
+            Slog.e(TAG, "Widget host dead: " + host.id, re);
+            host.callbacks = null;
         }
     }
 
@@ -3432,7 +3430,9 @@ class AppWidgetServiceImpl extends IAppWidgetService.Stub implements WidgetBacku
                     final int appWidgetId = args.argi1;
                     args.recycle();
 
-                    handleNotifyUpdateAppWidget(host, callbacks, appWidgetId, views, requestTime);
+                    synchronized (mLock) {
+                        handleNotifyUpdateAppWidgetLocked(host, callbacks, appWidgetId, views, requestTime);
+                    }
                 } break;
 
                 case MSG_NOTIFY_PROVIDER_CHANGED: {
