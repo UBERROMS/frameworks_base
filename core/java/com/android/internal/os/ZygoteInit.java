@@ -108,6 +108,11 @@ public class ZygoteInit {
      */
     private static final String PRELOADED_CLASSES = "/system/etc/preloaded-classes";
 
+    /**
+     * The class name of SystemServer
+     */
+    protected final static String SYSTEMSERVER_CLASSNAME = "com.android.server.SystemServer";
+
     /** Controls whether we should preload resources during zygote init. */
     public static final boolean PRELOAD_RESOURCES = false;
 
@@ -563,7 +568,7 @@ public class ZygoteInit {
      * a shared namespace associated with the classloader to let it access
      * platform-private native libraries.
      */
-    private static PathClassLoader createSystemServerClassLoader(String systemServerClasspath,
+    protected static PathClassLoader createSystemServerClassLoader(String systemServerClasspath,
                                                                  int targetSdkVersion) {
       String libraryPath = System.getProperty("java.library.path");
 
@@ -662,7 +667,7 @@ public class ZygoteInit {
             "--capabilities=" + capabilities + "," + capabilities,
             "--nice-name=system_server",
             "--runtime-args",
-            "com.android.server.SystemServer",
+            SYSTEMSERVER_CLASSNAME,
         };
         ZygoteConnection.Arguments parsedArgs = null;
 
