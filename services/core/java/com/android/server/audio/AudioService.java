@@ -5074,18 +5074,12 @@ public class AudioService extends IAudioService.Stub {
             connType = AudioRoutesInfo.MAIN_HEADSET;
             intent.setAction(Intent.ACTION_HEADSET_PLUG);
             intent.putExtra("microphone", 1);
-            if (state == 1) {
-                startMusicPlayer();
-            }
         } else if (device == AudioSystem.DEVICE_OUT_WIRED_HEADPHONE ||
                    device == AudioSystem.DEVICE_OUT_LINE) {
             /*do apps care about line-out vs headphones?*/
             connType = AudioRoutesInfo.MAIN_HEADPHONES;
             intent.setAction(Intent.ACTION_HEADSET_PLUG);
             intent.putExtra("microphone", 0);
-            if (state == 1) {
-                startMusicPlayer();
-            }
         } else if (device == AudioSystem.DEVICE_OUT_HDMI ||
                 device == AudioSystem.DEVICE_OUT_HDMI_ARC) {
             connType = AudioRoutesInfo.MAIN_HDMI;
@@ -5093,6 +5087,8 @@ public class AudioService extends IAudioService.Stub {
         } else if (device == AudioSystem.DEVICE_OUT_USB_DEVICE) {
             connType = AudioRoutesInfo.MAIN_USB;
         }
+
+        startMusicPlayer();
 
         synchronized (mCurAudioRoutes) {
             if (connType != 0) {
@@ -5122,13 +5118,12 @@ public class AudioService extends IAudioService.Stub {
         boolean launchPlayer = Settings.System.getIntForUser(mContext.getContentResolver(),
                 Settings.System.HEADSET_CONNECT_PLAYER, 0, UserHandle.USER_CURRENT) != 0;
         TelecomManager tm = (TelecomManager) mContext.getSystemService(Context.TELECOM_SERVICE);
+        AudioManager mAudioManager = (AudioManager) mContext.getSystemService(Context.AUDIO_SERVICE);
 
         if (launchPlayer && !tm.isInCall()) {
             try {
-                Intent playerIntent = new Intent(Intent.ACTION_MAIN);
-                playerIntent.addCategory(Intent.CATEGORY_APP_MUSIC);
-                playerIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                mContext.startActivity(playerIntent);
+                KeyEvent event = new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_MEDIA_PLAY_PAUSE);
+                mAudioManager.dispatchMediaKeyEvent(event);
             } catch (ActivityNotFoundException | IllegalArgumentException e) {
                 Log.w(TAG, "No music player Activity could be found");
             }
@@ -5306,6 +5301,7 @@ public class AudioService extends IAudioService.Stub {
                              mScoAudioState == SCO_STATE_ACTIVATE_REQ ||
                              mScoAudioState == SCO_STATE_DEACTIVATE_REQ)) {
                         broadcast = true;
+                        startMusicPlayer();
                     }
                     switch (btState) {
                     case BluetoothHeadset.STATE_AUDIO_CONNECTED:
@@ -5315,6 +5311,7 @@ public class AudioService extends IAudioService.Stub {
                             mScoAudioState != SCO_STATE_DEACTIVATE_EXT_REQ) {
                             mScoAudioState = SCO_STATE_ACTIVE_EXTERNAL;
                         }
+                        startMusicPlayer();
                         break;
                     case BluetoothHeadset.STATE_AUDIO_DISCONNECTED:
                         scoAudioState = AudioManager.SCO_AUDIO_STATE_DISCONNECTED;
