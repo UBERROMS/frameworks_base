@@ -172,6 +172,10 @@ public class BatteryDroidView extends AbstractBatteryView implements
     }
 
     @Override
+    public void onPowerSaveChanged(boolean isPowerSave) {
+    }
+
+    @Override
     protected void applyStyle() {
         Typeface font = Typeface.create("sans-serif-medium", Typeface.NORMAL);
         mTextPaint.setTypeface(font);

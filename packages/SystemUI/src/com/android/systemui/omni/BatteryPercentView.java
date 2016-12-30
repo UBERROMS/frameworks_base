@@ -97,6 +97,10 @@ public class BatteryPercentView extends AbstractBatteryView implements
     }
 
     @Override
+    public void onPowerSaveChanged(boolean isPowerSave) {
+    }
+
+    @Override
     protected void applyStyle() {
         mTextSize = getResources().getDimensionPixelSize(R.dimen.battery_level_text_size);
         mTextPaint.setTextSize(mTextSize);
