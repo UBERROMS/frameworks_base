@@ -51,6 +51,7 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
 import android.os.PowerManager;
+import android.os.Process;
 import android.os.RemoteException;
 import android.os.ServiceManager;
 import android.os.SystemProperties;
@@ -1317,6 +1318,12 @@ public abstract class BaseStatusBar extends SystemUI implements
         int msg = MSG_SHOW_PREV_AFFILIATED_TASK;
         mHandler.removeMessages(msg);
         mHandler.sendEmptyMessage(msg);
+    }
+
+    @Override
+    public void restartUI() {
+        Log.d(TAG, "StatusBar API restartUI! Commiting suicide! Goodbye cruel world!");
+        Process.killProcess(Process.myPid());
     }
 
     protected H createHandler() {
