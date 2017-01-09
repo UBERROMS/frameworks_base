@@ -188,6 +188,7 @@ include $(CLEAR_VARS)
 
 LOCAL_MODULE_CLASS := STATIC_LIBRARIES
 LOCAL_MODULE := libhwui_static
+LOCAL_CLANG_LTO := true
 LOCAL_CFLAGS := $(hwui_cflags)
 LOCAL_SRC_FILES := $(hwui_src_files)
 LOCAL_C_INCLUDES := $(hwui_c_includes) $(call hwui_proto_include)
@@ -231,6 +232,7 @@ include $(CLEAR_VARS)
 
 LOCAL_MODULE_CLASS := SHARED_LIBRARIES
 LOCAL_MODULE := libhwui
+LOCAL_CLANG_LTO := true
 LOCAL_WHOLE_STATIC_LIBRARIES := libhwui_static
 LOCAL_EXPORT_C_INCLUDE_DIRS := $(LOCAL_PATH)
 
