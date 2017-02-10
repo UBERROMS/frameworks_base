@@ -79,13 +79,15 @@ public class StatusBarIconController extends StatusBarIconList implements Tunabl
     private NotificationIconAreaController mNotificationIconAreaController;
     private View mNotificationIconAreaInner;
 
-    private BatteryViewManager mBatteryViewManager;
     private Clock mClock;
     private Clock mCenterClock;
     private Clock mLeftClock;
     private boolean mShowClock;
     private int mClockLocation;
     private LinearLayout mCenterClockLayout;
+
+    private BatteryMeterView mBatteryMeterView;
+    private BatteryMeterView mBatteryMeterViewKeyguard;
 
     private int mIconSize;
     private int mIconHPadding;
@@ -140,7 +142,10 @@ public class StatusBarIconController extends StatusBarIconList implements Tunabl
         notificationIconArea.addView(mNotificationIconAreaInner);
 
         mStatusIconsKeyguard = (LinearLayout) keyguardStatusBar.findViewById(R.id.statusIcons);
-        mBatteryViewManager = phoneStatusBar.getBatteryViewManager();
+
+	mBatteryMeterView = (BatteryMeterView) statusBar.findViewById(R.id.battery);
+        mBatteryMeterViewKeyguard = (BatteryMeterView) keyguardStatusBar.findViewById(R.id.battery);
+        scaleBatteryMeterViews(context);
 
         mClock = (Clock) statusBar.findViewById(R.id.clock);
         mCenterClockLayout = (LinearLayout)statusBar.findViewById(R.id.center_clock_layout);
